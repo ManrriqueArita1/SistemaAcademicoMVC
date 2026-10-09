@@ -19,6 +19,12 @@ namespace SistemaAcademicoMVC.Controllers
             return View(estudiantes);
         }
 
+        public ActionResult ListaEstudiantesPartial()
+        {
+            var estudiantes = db.Estudiantes.ToList();
+            return PartialView("_ListaEstudiantesPartial", estudiantes);
+        }
+
         //agregar un nuevo estudiante
         [HttpPost]
         public ActionResult Create(Estudiante estudiante)
