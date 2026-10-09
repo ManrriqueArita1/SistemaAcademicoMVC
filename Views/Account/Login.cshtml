@@ -1,0 +1,61 @@
+﻿@model SistemaAcademicoMVC.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Iniciar sesión";
+}
+
+<h2>Iniciar sesión</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Correo)
+        @Html.TextBoxFor(
+            model => model.Correo,
+            new
+            {
+                @class = "form-control",
+                type = "email"
+            }
+        )
+
+        @Html.ValidationMessageFor(model => model.Correo, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password)
+
+        @Html.PasswordFor(
+            model => model.Password,
+            new
+            {
+                @class = "form-control"
+            }
+        )
+
+        @Html.ValidationMessageFor(
+            model => model.Password,
+            "",
+            new { @class = "text-danger" }
+        )
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+    <br />
+     
+    <p>
+        Si aún no estás registrado,
+        @Html.ActionLink(
+            "Ingresa aquí",
+            "CreateUser",
+            "Account"
+        )
+    </p>
+}

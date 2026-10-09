@@ -1,0 +1,33 @@
+﻿@model SistemaAcademicoMVC.Models.Estudiante
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalle del estudiante</h2>
+
+@using (Html.BeginForm("Edit", "Estudiantes", FormMethod.Post, new { id = Model.Id }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        <label for="Nombre" class="control-label">Nombre:</label>
+        <input name="Nombre" value="@Model.Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="Correo" class="control-label">Correo:</label>
+        <input name="Correo" value="@Model.Correo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <br />
+        <input type="submit" value="Editar" class="btn btn-primary" />
+    </div>
+}
+
+<br />
+<br />
+
+@Html.ActionLink(
+    "Regresar al listado",
+    "Index"
+)
